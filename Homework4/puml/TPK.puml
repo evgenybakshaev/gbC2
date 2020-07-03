@@ -1,0 +1,26 @@
+@startuml
+
+start
+
+: P[11], tmp ]
+: i = 0 ]
+
+while (i <= 11) is (да)
+    : P[i] <
+    : i = i + 1 ;
+endwhile (нет)
+
+: i = 0 ;
+while (i > 0) is (да)
+    : tmp = √|P[i]| + 5·P[i]³;
+    if (tmp > 400) then (да)
+        : Переполнение >
+    else (нет)
+        : tmp >
+    endif
+    : i = i - 1;
+endwhile (нет)
+
+end
+
+@enduml

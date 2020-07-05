@@ -10,6 +10,14 @@ int **init2dIntArray(int **array, const int row, const int col){
     return array;
 }
 
+void free2dIntArray(int **array, const int row, const int col){
+
+    for(int i = 0; i < row; ++i){
+        free(*(array + i));
+    }
+    free(array);
+}
+
 void print2dArray(int **array, const int row, const int col){
     for(int r = 0; r < row; ++r){
         for(int c = 0; c < col; ++c){
@@ -28,6 +36,30 @@ void fill2dIntArray(int **array, const int row, const int col){
     }
 }
 
+void bubbleSort(int **a, size_t m, size_t n) {
+    int tmp;
+    size_t i, j, k, jp, ip;
+    size_t size = m*n;
+    char flag;
+
+    do {
+        flag = 0;
+        for (k = 1; k < size; k++) {
+            //Вычисляем индексы текущего элемента
+            j = k / m;
+            i = k - j*m;
+            //Вычисляем индексы предыдущего элемента
+            jp = (k-1) / m;
+            ip = (k-1) - jp*m;
+            if (a[i][j] > a[ip][jp]) {
+                tmp = a[i][j];
+                a[i][j] = a[ip][jp];
+                a[ip][jp] = tmp;
+                flag = 1;
+            }
+        }
+    } while(flag);
+}
 void bubbleSort2d(int **array, const int row, const int col){
     int t;
     int *cur, *next;
@@ -93,5 +125,6 @@ int main() {
     print2dArray(arr, row, col);
 
     algorithmTPK();
+    free2dIntArray(arr, row, col);
     return 0;
 }
